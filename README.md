@@ -1,39 +1,59 @@
-# Мониторинг рынка аренды квартир в Санкт-Петербурге (ЦИАН)
+Проект: мониторинг рынка аренды квартир в Санкт-Петербурге (BN.ru)
 
-Проект непрерывного скрапинга данных с `cian.ru` для анализа динамики цен и предложений на рынке аренды жилья в Санкт-Петербурге.
+Непрерывного скрапинга данных с BN.ru для анализа динамики цен и предложений на рынке аренды жилья в Санкт-Петербурге.
 
-## 🚀 Быстрый старт
 
-См. подробную инструкцию в файле **ИНСТРУКЦИЯ.txt**.
+Структура проекта:
 
-## 📁 Структура проекта
+ scraper:
+  - config.py – настройки (URL, селекторы, задержки)
+  - cian_scraper.py – основной класс скрапера
+  - parser.py – функции парсинга HTML
+  - __init__.py - модуль импорта
 
-- `scraper/` – модули скрапинга
-  - `config.py` – настройки (URL, селекторы, задержки)
-  - `cian_scraper.py` – основной класс скрапера
-  - `parser.py` – функции парсинга HTML
-- `flows/` – Prefect flows для оркестрации
-  - `prefect_flow.py` – основной flow мониторинга
-  - `deployment.py` – создание деплоя с расписанием
-- `data/raw/` – сырая БД SQLite
-- `data/processed/` – агрегированные данные
-- `notebooks/` – Jupyter ноутбук для анализа
-- `artifacts/` – графики и отчеты
 
-## 🔧 Требования
+ flows:
+- prefect_flow.py – основной flow мониторинга
+- deployment.py – создание деплоя с расписанием
+- __init__.py - модуль импорта
+- data/raw/ – сырая БД SQLite
+- data/processed/ – агрегированные данные
+- notebooks – Jupyter ноутбук для анализа
+- artifacts – графики и отчеты
 
-- Python 3.10+
-- Google Chrome и ChromeDriver
-- Prefect 2.x
-- Зависимости в `requirements.txt`
+--
 
-## 🌿 Ветвление
+Инструкции по запуску проекта
 
-- `main` – стабильная версия
-- `dev` – ветка разработки
-- `feature/*` – ветки для новых фич
 
-## 📝 Примечания
 
-- Селекторы в `config.py` могут устаревать. При ошибках парсинга обновите их.
-- Сайт ЦИАН может блокировать частые запросы. В скрапере добавлены задержки и эмуляция пользователя.
+1. CHROMEDRIVER
+   - Убедитесь, что установлен браузер Google Chrome.
+   - Скачайте ChromeDriver под вашу версию Chrome с https://chromedriver.chromium.org/
+   - Поместите chromedriver.exe (или chromedriver) в папку, которая есть в переменной PATH,
+     либо укажите полный путь в файле scraper/config.py в переменной CHROME_DRIVER_PATH.
+
+* При запуске: cian_scraper.py совершается поиск на соответствие актуальной версии и ее установку. 
+
+2. ПРОВЕРКА СКРАПЕРА
+   - Выполните (CMD): python -m scraper.cian_scraper (пример:C:\Users\Anton_Troya\Python_projects\scraper_project>python -m scraper.cian_scraper)
+   - Должны появиться сообщения о сборе данных. В папке data/raw/ создастся файл spb_rentals.db.
+
+3. ЗАПУСК НЕПРЕРЫВНОГО МОНИТОРИНГА (PREFECT)
+   - В отдельном терминале (с активированным venv) запустите сервер: prefect server start
+   - В другом терминале создайте деплой: python flows/deployment.py
+   - Запустите воркера: prefect worker start --pool default
+   - Flow будет автоматически запускаться ежедневно в 9:00 по Москве.
+
+4. РУЧНОЙ ЗАПУСК FLOW (БЕЗ РАСПИСАНИЯ)
+   - Выполните: python flows/prefect_flow.py
+   - Пример: C:\Users\Anton_Troya\Python_projects\scraper_project>python -m flows.prefect_flow
+
+
+5. ПРОСМОТР РЕЗУЛЬТАТОВ
+   - Сырая БД: data/raw/spb_rentals.db (можно открыть с помощью DB Browser for SQLite).
+   - CSV с ежедневной статистикой: data/processed/daily_stats.csv. (не реализовано - файл создается, цена не извлекается)
+   - Графики: artifacts/price_trend_spb.png и artifacts/listings_count_spb.png. (не реализовано)
+
+
+
