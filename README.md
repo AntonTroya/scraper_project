@@ -49,12 +49,8 @@
    - Выполните: python flows/prefect_flow.py
    - Пример: C:\Users\Anton_Troya\Python_projects\scraper_project>python -m flows.prefect_flow
 
-5. АНАЛИЗ ДАННЫХ
-   - Запустите Jupyter Notebook: jupyter notebook notebooks/analysis.ipynb
-   - Выполните все ячейки (Cell -> Run All).
-   - Графики сохранятся в папку artifacts/, агрегированные данные – в data/processed/daily_stats.csv.
 
-6. ПРОСМОТР РЕЗУЛЬТАТОВ
+5. ПРОСМОТР РЕЗУЛЬТАТОВ
    - Сырая БД: data/raw/spb_rentals.db (можно открыть с помощью DB Browser for SQLite).
-   - CSV с ежедневной статистикой: data/processed/daily_stats.csv.
-   - Графики: artifacts/price_trend_spb.png и artifacts/listings_count_spb.png.
+   - CSV с ежедневной статистикой: data/processed/daily_stats.csv. (не реализовано - файл создается, цена не извлекается)
+   - Графики: artifacts/price_trend_spb.png и artifacts/listings_count_spb.png. (не реализовано)
