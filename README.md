@@ -47,6 +47,7 @@
 
 4. РУЧНОЙ ЗАПУСК FLOW (БЕЗ РАСПИСАНИЯ)
    - Выполните: python flows/prefect_flow.py
+   - Пример: C:\Users\Anton_Troya\Python_projects\scraper_project>python -m flows.prefect_flow
 
 5. АНАЛИЗ ДАННЫХ
    - Запустите Jupyter Notebook: jupyter notebook notebooks/analysis.ipynb
