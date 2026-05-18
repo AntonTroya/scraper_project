@@ -7,7 +7,7 @@
 
  scraper:
   - config.py – настройки (URL, селекторы, задержки)
-  - cian_scraper.py – основной класс скрапера
+  - bn_scraper.py – основной класс скрапера
   - parser.py – функции парсинга HTML
   - __init__.py - модуль импорта
 
@@ -34,10 +34,10 @@
    - Поместите chromedriver.exe (или chromedriver) в папку, которая есть в переменной PATH,
      либо укажите полный путь в файле scraper/config.py в переменной CHROME_DRIVER_PATH.
 
-* При запуске: cian_scraper.py совершается поиск на соответствие актуальной версии и ее установку, устанавливать CHROMEDRIVER не нужно. 
+* При запуске: bn_scraper.py совершается поиск на соответствие актуальной версии и ее установку, устанавливать CHROMEDRIVER не нужно. 
 
 2. ПРОВЕРКА СКРАПЕРА
-   - Выполните (CMD): python -m scraper.cian_scraper (пример:C:\Users\Anton_Troya\Python_projects\scraper_project>python -m scraper.cian_scraper)
+   - Выполните (CMD): python -m scraper.bn_scraper (пример:C:\Users\Anton_Troya\Python_projects\scraper_project>python -m scraper.bn_scraper)
    - Должны появиться сообщения о сборе данных. В папке data/raw/ создастся файл spb_rentals.db.
 
 3. ЗАПУСК НЕПРЕРЫВНОГО МОНИТОРИНГА (PREFECT)
@@ -66,10 +66,10 @@
    - Поместите chromedriver.exe (или chromedriver) в папку, которая есть в переменной PATH,
      либо укажите полный путь в файле scraper/config.py в переменной CHROME_DRIVER_PATH.
 
-* При запуске: cian_scraper.py совершается поиск на соответствие актуальной версии и ее установку. 
+* При запуске: bn_scraper.py совершается поиск на соответствие актуальной версии и ее установку. 
 
 2. ПРОВЕРКА СКРАПЕРА
-   - Выполните (CMD): python -m scraper.cian_scraper (пример:C:\Users\Anton_Troya\Python_projects\scraper_project>python -m scraper.cian_scraper)
+   - Выполните (CMD): python -m scraper.bn_scraper (пример:C:\Users\Anton_Troya\Python_projects\scraper_project>python -m scraper.bn_scraper)
    - Должны появиться сообщения о сборе данных. В папке data/raw/ создастся файл spb_rentals.db.
 
 3. ЗАПУСК НЕПРЕРЫВНОГО МОНИТОРИНГА (PREFECT)
