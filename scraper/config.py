@@ -5,30 +5,23 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-CHROME_DRIVER_PATH = None
-
 BN_CONFIG = {
     "base_url": "https://www.bn.ru",
+    # Прямой рабочий путь к разделу аренды квартир
     "search_path": "/arenda-kvartiry/",
     "city_name": "Санкт-Петербург",
     "deal_type": "rent",
     "offer_type": "flat",
     "max_pages": 3,
     "max_ads_per_page": 30,
-    "search_params": {},
 }
 
-# Ключевое изменение: карточка = контейнер, содержащий и ссылку, и цену
 SELECTORS = {
-    "listing_card": "div[class*='catalog-item__container']",  # все варианты контейнеров
+    # Универсальный селектор для карточек объявлений
+    "listing_card": "div[class*='catalog-item__container'], div.catalog-item", 
     "title": "div.catalog-item__headline",
     "price": "div.catalog-item__price",
     "address": "div.catalog-item__address",
-    "area": None,
-    "rooms": None,
-    "floor": None,
-    "link": "a.catalog-item",
-    "next_page": "a.pagination__next",
 }
 
 DELAYS = {
@@ -39,6 +32,7 @@ DELAYS = {
 
 RAW_DATA_PATH = BASE_DIR / "data" / "raw" / "spb_rentals.db"
 PROCESSED_DATA_PATH = BASE_DIR / "data" / "processed" / "daily_stats.csv"
+REPORTS_DIR = BASE_DIR / "reports"
 
 SELENIUM_OPTIONS = [
     "--no-sandbox",
@@ -49,4 +43,3 @@ SELENIUM_OPTIONS = [
 PROXY = {
     "server": "",
 }
-

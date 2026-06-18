@@ -1,3 +1,2 @@
-date,new_listings,avg_price,min_price,max_price,avg_area
-2026-04-25,3,,,,44.73333333333333
-2026-04-24,31,,,,31.91935483870968
+date,total_listings,avg_price,avg_price_per_sqm
+2026-06-16,32,25203.12,871.36

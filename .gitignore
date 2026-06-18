@@ -1,0 +1,13 @@
+# Python окружение
+venv/
+__pycache__/
+*.py[cod]
+
+# Локальные данные
+data/
+reports/
+
+# IDE и редакторы
+.idea/
+.vscode/
+.DS_Store
